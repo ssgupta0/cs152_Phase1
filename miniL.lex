@@ -15,7 +15,7 @@ NEWLINE           [\n]
 %%
    /* specific lexer rules in regex */
 
-"function"        {printf("FUNCTION");colNum+=8;}
+"function"        {printf("FUNCTION\n");colNum+=8;}
 "beginparams"     {printf("BEGIN_PARAMS\n");colNum+=11;}
 "endparams"       {printf("END_PARAMS\n");colNum+=9;}
 "beginlocals"     {printf("BEGIN_LOCALS\n");colNum+=11;}
