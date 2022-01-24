@@ -5,13 +5,17 @@
 %}
 
    /* some common rules */
-IDENT             [A-Za-z]*
-NUMBER            [0-9]*
+IDENT             [A-Za-z]+
+NUMBER            [0-9]+
 WHITESPACE        [\t ]
 NEWLINE           [\n]
 
 %%
    /* specific lexer rules in regex */
+
+IDENT             {printf("IDENT %s\n", yytext);}
+NUMBER            {printf("NUMBER %s\n", yytext);}
+
 
 "function"        {printf("FUNCTION");}
 "beginparams"     {printf("BEGIN_PARAMS\n");}
@@ -41,7 +45,7 @@ NEWLINE           [\n]
 "return"          {printf("RETURN\n");}
 
 ":="              {printf("ASSIGN\n");}
-
+","               {printf("COMMA\n");}
 "["               {printf("L_SQUARE_BRACKET\n");}
 "]"               {printf("R_SQUARE_BRACKET\n");}
 "("               {printf("L_PAREN\n");}
@@ -63,8 +67,6 @@ NEWLINE           [\n]
 "<="              {printf("LTE\n");}
 ">="              {printf("GTE\n");}
 
-IDENT             {printf("IDENT %s\n", yytext);}
-NUMBER            {printf("NUMBER %s\n", yytext);}
 
 "##".*{NEWLINE}
 
