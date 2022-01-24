@@ -63,7 +63,7 @@ NEWLINE           [\n]
 "<="              {printf("LTE\n");}
 ">="              {printf("GTE\n");}
 
-IDENT             {printf("IDENT %s\n", yytext)");}
+IDENT             {printf("IDENT %s\n", yytext);}
 NUMBER            {printf("NUMBER %s\n", yytext);}
 
 "##".*{NEWLINE}
