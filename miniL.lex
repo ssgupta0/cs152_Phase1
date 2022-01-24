@@ -65,10 +65,7 @@ NEWLINE           [\n]
 "<="              {printf("LTE\n");colNum+=2;}
 ">="              {printf("GTE\n");colNum+=2;}
 
-{LETTER}({LETTER}|{DIGIT}|"_")*({LETTER}|{DIGIT})+ {
-    printf("IDENT %s\n", yytext);
-    colNum += yyleng;
-}
+
 {DIGIT}+ {
     printf("NUMBER %s\n", yytext);
     colNum += yyleng;
@@ -81,6 +78,11 @@ NEWLINE           [\n]
 {LETTER}({DIGIT}|{LETTER})*"_" {
   printf("Error at line %d, column %d: identifier \"%s\" cannot end with an underscore.\n", rowNum, colNum, yytext);
   exit(1);
+}
+
+{LETTER}({LETTER}|{DIGIT}|"_")*({LETTER}|{DIGIT})* {
+    printf("IDENT %s\n", yytext);
+    colNum += yyleng;
 }
 
 {WHITESPACE}+   colNum += yyleng;

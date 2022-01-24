@@ -360,8 +360,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 53
-#define YY_END_OF_BUFFER 54
+#define YY_NUM_RULES 54
+#define YY_END_OF_BUFFER 55
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -371,23 +371,23 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[160] =
     {   0,
-       48,   48,   54,   53,   50,   51,   53,   39,   31,   32,
-       37,   36,   28,   35,   38,   47,   34,   33,   42,   53,
-       43,   53,   29,   30,   53,   53,   53,   53,   53,   53,
-       53,   53,   53,   53,   53,   53,   50,   51,    0,   47,
-       48,   27,   44,   41,   40,   45,   46,   49,   46,   46,
-       46,   46,   16,   46,   46,   46,   46,   11,   46,   46,
-       10,   46,   46,   46,   46,   46,    0,   52,    0,   46,
-        0,   46,   46,   46,   46,   46,   46,   46,   46,   46,
-       23,   46,   46,   46,   46,   46,   46,   46,   46,   46,
-       46,   14,   46,   46,   46,   46,   46,   46,   46,   21,
+       47,   47,   55,   53,   50,   51,   53,   39,   31,   32,
+       37,   36,   28,   35,   38,   46,   34,   33,   42,   53,
+       43,   49,   29,   30,   49,   49,   49,   49,   49,   49,
+       49,   49,   49,   49,   49,   49,   50,   51,    0,   46,
+       47,   27,   44,   41,   40,   45,   49,   48,   49,   49,
+       49,   49,   16,   49,   49,   49,   49,   11,   49,   49,
+       10,   49,   49,   49,   49,   49,    0,   52,    0,   49,
+       49,   49,   49,   49,   49,   49,   49,   49,   49,   49,
+       23,   49,   49,   49,   49,   49,   49,   49,   49,   49,
+       49,   14,   49,   49,   49,   49,   49,   49,   49,   21,
 
-       46,   12,   24,   46,   46,    9,   46,   20,   46,   46,
-       13,   46,   46,   25,   46,   46,   46,   15,   22,   46,
-       46,   46,   46,   46,   46,   46,   46,   46,   46,   26,
-       46,   46,   46,   46,    7,   46,   18,   46,   46,    8,
-       46,   46,   46,   46,   19,   46,   46,    1,    6,   46,
-       17,   46,    5,    3,   46,   46,    4,    2,    0
+       49,   12,   24,   49,   49,    9,   49,   20,   49,   49,
+       13,   49,   49,   25,   49,   49,   49,   15,   22,   49,
+       49,   49,   49,   49,   49,   49,   49,   49,   49,   26,
+       49,   49,   49,   49,    7,   49,   18,   49,   49,    8,
+       49,   49,   49,   49,   19,   49,   49,    1,    6,   49,
+       17,   49,    5,    3,   49,   49,    4,    2,    0
     } ;
 
 static yyconst flex_int32_t yy_ec[256] =
@@ -1074,59 +1074,67 @@ YY_RULE_SETUP
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 68 "miniL.lex"
-{
-    printf("IDENT %s\n", yytext);
-    colNum += yyleng;
-}
-	YY_BREAK
-case 47:
-YY_RULE_SETUP
-#line 72 "miniL.lex"
+#line 69 "miniL.lex"
 {
     printf("NUMBER %s\n", yytext);
     colNum += yyleng;
 }
 	YY_BREAK
-case 48:
+case 47:
 YY_RULE_SETUP
-#line 77 "miniL.lex"
+#line 74 "miniL.lex"
 {
   printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter.\n", rowNum, colNum, yytext);
   exit(1);
 }
 	YY_BREAK
-case 49:
+case 48:
 YY_RULE_SETUP
-#line 81 "miniL.lex"
+#line 78 "miniL.lex"
 {
   printf("Error at line %d, column %d: identifier \"%s\" cannot end with an underscore.\n", rowNum, colNum, yytext);
   exit(1);
 }
 	YY_BREAK
+case 49:
+YY_RULE_SETUP
+#line 83 "miniL.lex"
+{
+    printf("IDENT %s\n", yytext);
+    colNum += yyleng;
+}
+	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 86 "miniL.lex"
+#line 88 "miniL.lex"
 colNum += yyleng;
 	YY_BREAK
 case 51:
 /* rule 51 can match eol */
 YY_RULE_SETUP
-#line 87 "miniL.lex"
+#line 89 "miniL.lex"
 rowNum += yyleng; colNum = 0;
 	YY_BREAK
 case 52:
 /* rule 52 can match eol */
 YY_RULE_SETUP
-#line 89 "miniL.lex"
+#line 91 "miniL.lex"
 
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 91 "miniL.lex"
+#line 93 "miniL.lex"
+{
+  printf("Error at line %d, column %d: unrecognized symbol \"%s\" \n", rowNum, colNum, yytext);
+  exit(1);
+}
+	YY_BREAK
+case 54:
+YY_RULE_SETUP
+#line 98 "miniL.lex"
 ECHO;
 	YY_BREAK
-#line 1130 "lex.yy.c"
+#line 1138 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2120,7 +2128,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 91 "miniL.lex"
+#line 98 "miniL.lex"
 
 
 	/* C functions used in lexer */
