@@ -1,14 +1,21 @@
    /* cs152-miniL phase1 */
    
 %{   
-   /* write your C code here for definitions of variables and including headers */
+   int colNum = 0;
+   int rowNum = 0;
 %}
 
    /* some common rules */
 IDENT             [A-Za-z]+
 NUMBER            [0-9]+
 WHITESPACE        [\t ]
-NEWLINE           [\n]
+DIGIT [0-9]
+DIGIT_UNDERSCORE [0-9_]
+LETTER [a-zA-Z]
+LETTER_UNDERSCORE [a-zA-Z_]
+CHAR [0-9a-zA-Z_]
+ALPHANUMER [0-9a-zA-Z]
+NEWLINE [\n]
 
 %%
    /* specific lexer rules in regex */
@@ -43,6 +50,15 @@ NUMBER            {printf("NUMBER %s\n", yytext);}
 "true"            {printf("TRUE\n");}
 "false"           {printf("FALSE\n");}
 "return"          {printf("RETURN\n");}
+
+{LETTER}({CHAR}*{ALPHANUMER}+)? {
+    printf("IDENT %s\n", yytext);
+    colNum += yyleng;
+}
+{DIGIT}+ {
+    printf("NUMBER %s\n", yytext);
+    colNum += yyleng;
+}
 
 ":="              {printf("ASSIGN\n");}
 ","               {printf("COMMA\n");}
