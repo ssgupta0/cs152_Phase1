@@ -5,12 +5,15 @@
 %}
 
    /* some common rules */
-IDENT           [A-Za-z]*
-NUMBER          [0-9]*
+IDENT             [A-Za-z]*
+NUMBER            [0-9]*
+WHITESPACE        [\t ]
+NEWLINE           [\n]
+
 %%
    /* specific lexer rules in regex */
 
-"function"        {printf("FUNCTION\n");}
+"function"        {printf("FUNCTION");}
 "beginparams"     {printf("BEGIN_PARAMS\n");}
 "endparams"       {printf("END_PARAMS\n");}
 "beginlocals"     {printf("BEGIN_LOCALS\n");}
@@ -37,10 +40,21 @@ NUMBER          [0-9]*
 "false"           {printf("FALSE\n");}
 "return"          {printf("RETURN\n");}
 
+":="              {printf("ASSIGN\n");}
+
+"["               {printf("L_SQUARE_BRACKET\n");}
+"]"               {printf("R_SQUARE_BRACKET\n");}
+"("               {printf("L_PAREN\n");}
+")"               {printf("R_PAREN\n");}
+
+";"               {printf("SEMICOLON\n");}
+":"               {printf("COLON\n");}
+
+
 "-"               {printf("SUB\n");}
 "+"               {printf("ADD\n");}
-"\*"              {printf("MULT\n");}
-"\/"              {printf("DIV\n");}
+"*"               {printf("MULT\n");}
+"/"               {printf("DIV\n");}
 "%"               {printf("MOD\n");}
 "=="              {printf("EQ\n");}
 "<>"              {printf("NEQ\n");}
@@ -49,8 +63,10 @@ NUMBER          [0-9]*
 "<="              {printf("LTE\n");}
 ">="              {printf("GTE\n");}
 
-IDENT             {printf("IDENT\n");}
-NUMBER            {printf("NUMBER\n");}
+IDENT             {printf("IDENT %s\n", yytext)");}
+NUMBER            {printf("NUMBER %s\n", yytext);}
+
+"##".*{NEWLINE}
 
 %%
 	/* C functions used in lexer */
